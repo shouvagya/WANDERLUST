@@ -1,27 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WanderLust</title>
-</head>
-<body>
+<%- layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+
     <h3>Edit your listing</h3>
-    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT">
-        <input name="listing[title]" value="<%=listing.title%>" type="text">
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" id="myForm">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Enter valid title!</div>
+        </div>
         <br>
-        <textarea name="listing[description]"><%=listing.description%></textarea>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" class="form-control" required><%=listing.description%></textarea>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Enter valid description!</div>
+        </div>
         <br>
-        <input name="listing[image]" value="<%=listing.image%>" type="text">
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input name="listing[image][url]" value="<%=listing.image.url%>" type="text" class="form-control" id="myInput" >
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Enter valid image url!</div>
+        </div>
         <br>
-        <input name="listing[price]" value="<%=listing.price%>" type="number">
+
+        <div class="row">
+            
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" value="<%=listing.price%>" type="number" class="form-control" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Enter valid price!</div>
+                </div>
+                <br>
+            
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input name="listing[country]" value="<%=listing.country%>" type="text" class="form-control" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Enter valid country!</div>
+                </div>
+                <br>
+            
+        </div>
+
+        <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]"  value="<%=listing.location%>" type="text" class="form-control" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Enter valid loaction!</div>
+        </div>
         <br>
-        <input name="listing[location]"  value="<%=listing.location%>" type="text">
-        <br>
-        <input name="listing[country]" value="<%=listing.country%>" type="text">
-        <br>
-        <button>Edit</button>
+
+        <button class="btn edit-btn mt-3">Edit</button>
     </form>
+    </div>
+
+</div>
+
+<!-- <script>
+  const form = document.getElementById("myForm");
+  const input = document.getElementById("myInput");
+
+  form.addEventListener("submit", function (e) {
+    if (input.value.trim() === "") {
+      input.value = "https://unsplash.com/photos/hand-holding-a-delicious-bitten-cinnamon-roll-ovR_fTYcqa0"; // fallback value
+    }
+  });
+</script> -->
     
-</body>
-</html>

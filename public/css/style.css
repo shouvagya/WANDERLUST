@@ -101,4 +101,21 @@ body{
 
 .add-btn{
     background-color:rgb(193, 28, 28) !important;
+    color:white !important;
+}
+
+/* Edit page */
+.edit-btn{
+    background-color:rgb(193, 28, 28) !important;
+    color:white !important;
+}
+
+/*Show page  */
+.show-img{
+    height:30vh;
+}
+.btns{
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
 }

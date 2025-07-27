@@ -1,4 +1,4 @@
-<%- layout("layouts/boilerplate") %>
+<%- layout("/layouts/boilerplate") %>
 
 <div class="row mt-3">
     <div class="col-8 offset-2">
@@ -20,7 +20,7 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label">Image link</label>
-                <input name="listing[image]" placeholder="Enter image URL/link" type="text" class="form-control" >
+                <input name="listing[image][url]" placeholder="Enter image URL/link" type="text" class="form-control" >
                 <div class="valid-feedback">Looks good!</div>
                 <div class="invalid-feedback">Enter valid image url!</div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="invalid-feedback">Enter valid loaction!</div>
             </div>
 
-            <button class="btn btn-primary">Add</button>
+            <button class="btn add-btn mt-3 mb-3">Add</button>
         </form>
     </div>
 </div>

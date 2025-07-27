@@ -1,19 +1,49 @@
-<%- layout('/layouts/boilerplate') %>
-<body>
-    <h3>Listing Details :</h3>
-    <ul>
-        <li><%=listing.title%></li>
-        <li><%=listing.description%></li>
-        <li>&#8377;<%=listing.price.toLocaleString("en-IN")%></li>
-        <li><%=listing.location%></li>
-        <li><%=listing.country%></li>
-    </ul>
+<%- layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3><b><%=listing.title%></b></h3>
+    </div> 
+
+    <div class="card col-6 offset-2">
+        <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing-image">
+        <div class="card-body">
+            <p class="card-text">
+                <%=listing.description%><br>
+                <%=listing.price%><br>
+                <%=listing.location%><br>
+                <%=listing.country%><br>
+            </p>
+        </div>
+    </div>
     <br>
-    <a href="/listings/<%=listing._id%>/edit">Edit this Listing</a>
-    <br><br>
-    <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-        <button>Delete this listing</button>
-    </form>
-    <br>
-    <a href="/listings"><button>Back to Home</button></a>
-</body>
+    <div class="btns">
+        <div >
+            <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark">Edit</a>
+            <br><br>
+            <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+
+    <div class="col-8 offset-3">
+        <h4>Leave a review</h4>
+        <form method="POST" action="/listings/<%=listing._id%>/reviews" novalidate class="needs-validation">
+            <div class="mb-3 mt-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input type="range" min="1" max="5" id="rating" name="review[rating]">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="comment" class="form-label">Comments</label>
+                <textarea name="review[comment]" id="comment" cols="30" rows="10" class="form-control" required></textarea>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please add a comment</div>
+            </div>
+            <button class="btn btn-outline-dark mb-3 mt-3">Submit</button>
+        </form>
+    </div>
+    
+</div>
+
