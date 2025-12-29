@@ -1,0 +1,61 @@
+<!-- <%- layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <div class="alert alert-danger col-6 offset-3" role="alert">
+        <h4><%= message %></h4>
+    </div>
+</div>
+ -->
+
+
+ <%- layout("/layouts/boilerplate") %>
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 75vh;">
+
+    <div class="card shadow-lg p-4 border-0"
+         style="max-width: 600px; border-radius: 20px;
+                background: #fff;
+                border-top: 6px solid #d9534f;">
+        
+        <div class="text-center mb-4">
+            <div style="
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 10px auto;
+                border-radius: 50%;
+                background: linear-gradient(145deg, #ffdddd, #ffcccc);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 12px rgba(255,0,0,0.25);
+            ">
+                <i class="bi bi-exclamation-triangle-fill text-danger"
+                   style="font-size: 2.5rem;"></i>
+            </div>
+        </div>
+
+        <h2 class="text-center fw-bold mb-2"
+            style="letter-spacing: -0.5px; color: #c0392b;">
+            Oops! Something went wrong
+        </h2>
+
+        <p class="text-center text-muted mb-4" style="font-size: 1.1rem;">
+            <%= message %>
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="/listings"
+               class="btn px-4 py-2 rounded-pill text-white"
+               style="background-color: #c62828; border: none;">
+                ⬅ Back to Listings
+            </a>
+
+            <a href="/"
+               class="btn btn-outline-danger px-4 py-2 rounded-pill">
+                Home
+            </a>
+        </div>
+    </div>
+
+</div>

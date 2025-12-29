@@ -1,9 +1,9 @@
-<%- layout("/layouts/boilerplate") %>
+<!-- <%- layout("/layouts/boilerplate") %>
 <div class="row mt-3">
     <div class="col-8 offset-2">
 
     <h3>Edit your listing</h3>
-    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" id="myForm">
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" id="myForm" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control" required>
@@ -21,10 +21,16 @@
         <br>
 
         <div class="mb-3">
+            Original Listing Image
+            <img src="<%=originalImageUrl%>">
+        </div>
+
+
+        <div class="mb-3">
             <label for="image" class="form-label">Image</label>
-            <input name="listing[image][url]" value="<%=listing.image.url%>" type="text" class="form-control" id="myInput" >
+            <input name="listing[image][url]" value="<%=listing.image.url%>" type="file" class="form-control" id="myInput">
             <div class="valid-feedback">Looks good!</div>
-            <div class="invalid-feedback">Enter valid image url!</div>
+            <div class="invalid-feedback">Enter valid image</div>
         </div>
         <br>
 
@@ -60,7 +66,107 @@
     </form>
     </div>
 
+</div> -->
+
+
+
+<%- layout("/layouts/boilerplate") %>
+
+<div class="row justify-content-center mt-4">
+  <div class="col-lg-6 col-md-8 col-sm-12">
+
+    <h3 class="mb-4 fw-semibold text-center">Edit your listing</h3>
+
+    <form method="POST" 
+          action="/listings/<%= listing._id %>?_method=PUT"
+          novalidate 
+          class="needs-validation bg-white p-4 rounded-4 shadow-sm"
+          id="myForm"
+          enctype="multipart/form-data">
+
+      <!-- Title -->
+      <div class="mb-3">
+        <label class="form-label fw-medium">Title</label>
+        <input name="listing[title]" 
+               value="<%= listing.title %>" 
+               type="text" 
+               class="form-control rounded-3"
+               required>
+        <div class="invalid-feedback">Enter valid title!</div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label class="form-label fw-medium">Description</label>
+        <textarea name="listing[description]" 
+                  class="form-control rounded-3"
+                  rows="4"
+                  required><%= listing.description %></textarea>
+        <div class="invalid-feedback">Enter valid description!</div>
+      </div>
+
+      <!-- Original Image -->
+      <div class="mb-3">
+        <label class="form-label fw-medium d-block">Original Listing Image</label>
+        <img src="<%= originalImageUrl %>" 
+             class="img-fluid rounded-3 shadow-sm"
+             style="max-height: 200px; object-fit: cover;">
+      </div>
+
+      <!-- Image Upload -->
+      <div class="mb-3">
+        <label class="form-label fw-medium">Update Image</label>
+        <input name="listing[image][url]" 
+               type="file" 
+               class="form-control rounded-3"
+               id="myInput">
+      </div>
+
+      <!-- Price & Country -->
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label fw-medium">Price</label>
+          <input name="listing[price]" 
+                 value="<%= listing.price %>" 
+                 type="number" 
+                 class="form-control rounded-3"
+                 required>
+          <div class="invalid-feedback">Enter valid price!</div>
+        </div>
+
+        <div class="col-md-8 mb-3">
+          <label class="form-label fw-medium">Country</label>
+          <input name="listing[country]" 
+                 value="<%= listing.country %>" 
+                 type="text" 
+                 class="form-control rounded-3"
+                 required>
+          <div class="invalid-feedback">Enter valid country!</div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <label class="form-label fw-medium">Location</label>
+        <input name="listing[location]" 
+               value="<%= listing.location %>" 
+               type="text" 
+               class="form-control rounded-3"
+               required>
+        <div class="invalid-feedback">Enter valid location!</div>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center">
+        <button class="btn btn-dark px-5 py-2 rounded-3 mt-3">
+          Save Changes
+        </button>
+      </div>
+
+    </form>
+  </div>
 </div>
+
 
 <!-- <script>
   const form = document.getElementById("myForm");
@@ -71,5 +177,7 @@
       input.value = "https://unsplash.com/photos/hand-holding-a-delicious-bitten-cinnamon-roll-ovR_fTYcqa0"; // fallback value
     }
   });
-</script> -->
-    
+</script>
+
+
+

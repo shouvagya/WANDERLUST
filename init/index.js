@@ -18,6 +18,26 @@ async function main(){
 
 const initDB=async()=>{
     await Listing.deleteMany({});
+    initData.data=initData.data.map((obj)=> ({...obj,owner:'6933c5fd3cd2f8e7f4bcf85a'}));
+    const categories = [
+        "Trending",
+        "Mountains",
+        "Amazing Pools",
+        "Domes",
+        "Camping",
+        "Arctic",
+        "Iconic Cities",
+        "Boats",
+        "Castles",
+        "Farms",
+        "Rooms"
+    ];
+
+    initData.data = initData.data.map((obj, index) => ({
+    ...obj,
+    category: categories[index % categories.length]
+    }));
+
     await Listing.insertMany(initData.data);
     console.log("data was iniitialized");
 };
