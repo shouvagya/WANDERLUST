@@ -130,7 +130,11 @@
 
       <div class="card-body px-4 py-3">
         <p class="card-text mb-2 text-muted fst-italic">
-          Owned by <b><%= listing.owner.username %></b>
+          <% if (listing.owner) { %>
+            <i>Owned by <b><%= listing.owner.username %></b></i>
+          <% } else { %>
+            <i>Owner not available</i>
+          <% } %>
         </p>
 
         <p class="card-text mb-2">

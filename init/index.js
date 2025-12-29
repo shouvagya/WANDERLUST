@@ -1,8 +1,10 @@
 const mongoose=require("mongoose");
 const initData=require("./data.js");
 const Listing=require("../models/listing.js");
+require("dotenv").config({ path: "../.env" });
 
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+//const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl=process.env.ATLASDB_URL
 
 main()
 .then(()=>{
@@ -13,12 +15,12 @@ main()
 });
 
 async function main(){
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
 
 const initDB=async()=>{
     await Listing.deleteMany({});
-    initData.data=initData.data.map((obj)=> ({...obj,owner:'6933c5fd3cd2f8e7f4bcf85a'}));
+    initData.data=initData.data.map((obj)=> ({...obj,owner:"69522f7034e2699a94778ec3"}));
     const categories = [
         "Trending",
         "Mountains",
@@ -43,3 +45,5 @@ const initDB=async()=>{
 };
 
 initDB();
+
+
